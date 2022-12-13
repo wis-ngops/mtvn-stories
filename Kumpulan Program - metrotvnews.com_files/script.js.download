@@ -1,0 +1,79 @@
+//TOGGLE FOR CHANGING THEME
+$(".toggle-theme").click(function () {
+    const moon = "https://www.metrotvnews.com/asset/asset/icons/night.png";
+    const sun = "https://www.metrotvnews.com/asset/asset/icons/sun.png";
+
+    if ($(this).hasClass("light")) {
+      $("body").addClass("darkmode");
+      $(this).removeClass("light")
+      $(this).addClass("dark");
+      $(this).css("left", "66px");
+      $(this).find("img").attr("src", moon);
+      
+      $(".btn-popup-search img").attr("src", "https://www.metrotvnews.com/asset/asset/icons/search-white.png");
+      $(".btn-notify img").attr("src", "https://www.metrotvnews.com/asset/asset/icons/bell-icon.svg");
+      $(".search-popup button").css("background", `url("https://www.metrotvnews.com/asset/asset/icons/search-white.png") no-repeat`);
+      
+      //CHANGE TOGGLE BUTON IN DETAIL PAGE
+      if($(".toggle-mode").length > 0) {
+        if($(".toggle-mode").hasClass("dark")) {
+          $(".toggle-mode").removeClass("dark");
+          $(".toggle-mode").addClass("light");
+          $(".toggle-mode img").attr("src", sun);
+        } else {
+          $(".toggle-mode").removeClass("light");
+          $(".toggle-mode").addClass("dark");
+          $(".toggle-mode img").attr("src", moon);
+        }
+      } 
+    } else {
+      $("body").removeClass("darkmode");
+      $(this).addClass("light")
+      $(this).removeClass("dark");
+      $(this).css("left", "5px");
+      $(this).find("img").attr("src", sun);
+      
+      $(".btn-popup-search img").attr("src", "https://www.metrotvnews.com/asset/asset/icons/search-icon.svg");
+      $(".btn-notify img").attr("src", "https://www.metrotvnews.com/asset/asset/icons/bell-black.svg");
+      $(".search-popup button").css("background", `url("https://www.metrotvnews.com/asset/asset/icons/search-icon.svg") no-repeat`);
+
+      //CHANGE TOGGLE BUTON IN DETAIL PAGE
+      if($(".toggle-mode").length > 0) {
+        if($(".toggle-mode").hasClass("dark")) {
+          $(".toggle-mode").removeClass("dark");
+          $(".toggle-mode").addClass("light");
+          $(".toggle-mode img").attr("src", sun);
+        } else {
+          $(".toggle-mode").removeClass("light");
+          $(".toggle-mode").addClass("dark");
+          $(".toggle-mode img").attr("src", moon);
+        }
+      } 
+    }
+  })
+
+  $(".btn-popup-search").click(function () {
+    if ($("div").hasClass("search-popup-active")) {
+      $(".search-popup").removeClass("search-popup-active");
+      $(".btn-popup").css("display", "none");
+      $(".search-popup input").css("width", "0%");
+      $(".search-popup input").css("display", "none");
+      $(".search-popup button").css("display", "none");
+    } else if (!$("div").hasClass("search-popup-active")) {
+      $(".search-popup").addClass("search-popup-active");
+      $(".search-popup input").css("display", "block");
+      $(".search-popup input").css("width", "50%");
+      $(".search-popup button").css("display", "block");
+    }
+  });
+
+  //TOGGLE BUTTON NOTIFICATION IN NAVBAR
+  $(".btn-notify").click(function () {
+    if (!$("button").hasClass("btn-active-notify")) {
+      $(".btn-notify").addClass("btn-active-notify");
+      $(".navbar-notify").css("visibility", "visible");
+    } else {
+      $(".btn-notify").removeClass("btn-active-notify");
+      $(".navbar-notify").css("visibility", "hidden");
+    }
+  });

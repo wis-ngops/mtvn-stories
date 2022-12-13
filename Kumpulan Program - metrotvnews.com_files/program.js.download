@@ -1,0 +1,159 @@
+$(document).ready(function () {
+ $(".program-slide-show").owlCarousel({
+    loop: true,
+    center: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1.5,
+      },
+      600: {
+        items: 1.5,
+      },
+      1000: {
+        items: 2,
+      },
+    },
+  });
+
+
+  $(".program-card").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
+    },
+  });
+
+  var cardlist = $(".card-container li");
+
+  $(".toggle-program-link").click(function (tpl) {
+    tpl.preventDefault();
+    let deviceWidth = $(window).width();
+
+    $(".card").removeClass("active");
+    $(".program-popup .program-content").removeClass("show");
+
+    $($(this).parent()).addClass("active");
+    $($(this).attr("href")).addClass("show");
+    $(".program-popup").addClass("show");
+
+    /*
+    if (cardlist.index($(this).parent()) < 6) {
+      $(".program-popup").css("top", "250px");
+    } else if (cardlist.index($(this).parent()) > 5 && cardlist.index($(this).parent()) < 12) {
+      $(".program-popup").css("top", "431px");//+ 181px
+    } else if (cardlist.index($(this).parent()) > 11 && cardlist.index($(this).parent()) < 18) {
+      $(".program-popup").css("top", "573px");//+ 181px
+    } else if (cardlist.index($(this).parent()) > 17 && cardlist.index($(this).parent()) < 24) {
+      $(".program-popup").css("top", "736px");//+ 181px
+    } else if (cardlist.index($(this).parent()) > 23 && cardlist.index($(this).parent()) < 32) {
+      $(".program-popup").css("top", "899px");//+ 181px
+    }//jika program lebih dari 5 baris, posisi top selanjutnya tambah 181px
+    */
+
+    if (cardlist.index($(this).parent()) < 6) {
+      if (deviceWidth < 1100) {
+        $(".program-popup").css("top", "190px");
+      } else if (deviceWidth > 1100 && deviceWidth < 1200) {
+        $(".program-popup").css("top", "210px");
+      } else if (deviceWidth > 1200 && deviceWidth <= 1300) {
+        $(".program-popup").css("top", "220px");
+      } else {
+        $(".program-popup").css("top", "247px");
+      }
+    } else if (
+      cardlist.index($(this).parent()) > 5 &&
+      cardlist.index($(this).parent()) < 12
+    ) {
+      if (deviceWidth < 1100) {
+        $(".program-popup").css("top", "310px"); //+ 120
+      } else if (deviceWidth > 1100 && deviceWidth < 1200) {
+        $(".program-popup").css("top", "370px"); //+ 160
+      } else if (deviceWidth > 1200 && deviceWidth <= 1300) {
+        $(".program-popup").css("top", "370px"); // + 150
+      } else {
+        $(".program-popup").css("top", "431px"); // + 184
+      }
+    } else if (
+      cardlist.index($(this).parent()) > 11 &&
+      cardlist.index($(this).parent()) < 18
+    ) {
+      if (deviceWidth < 1100) {
+        $(".program-popup").css("top", "430px"); //+ 120
+      } else if (deviceWidth > 1100 && deviceWidth < 1200) {
+        $(".program-popup").css("top", "370px"); //+ 160
+      } else if (deviceWidth > 1200 && deviceWidth <= 1300) {
+        $(".program-popup").css("top", "370px"); // + 150
+      } else {
+        $(".program-popup").css("top", "615px"); // + 184
+      }
+    } else if (
+      cardlist.index($(this).parent()) > 17 &&
+      cardlist.index($(this).parent()) < 24
+    ) {
+      if (deviceWidth < 1100) {
+        $(".program-popup").css("top", "550px"); //+ 120
+      } else if (deviceWidth > 1100 && deviceWidth < 1200) {
+        $(".program-popup").css("top", "530px"); //+ 160
+      } else if (deviceWidth > 1200 && deviceWidth <= 1300) {
+        $(".program-popup").css("top", "520px"); // + 150
+      } else {
+        $(".program-popup").css("top", "799px"); // + 184
+      }
+    } else if (
+      cardlist.index($(this).parent()) > 23 &&
+      cardlist.index($(this).parent()) < 32
+    ) {
+      if (deviceWidth < 1100) {
+        $(".program-popup").css("top", "670px"); //+ 120
+      } else if (deviceWidth > 1100 && deviceWidth < 1200) {
+        $(".program-popup").css("top", "690px"); //+ 160
+      } else if (deviceWidth > 1200 && deviceWidth <= 1300) {
+        $(".program-popup").css("top", "670px"); // + 150
+      } else {
+        $(".program-popup").css("top", "983px"); // + 184
+      }
+    }
+  });
+
+  $(".btn-close").click(function () {
+    $(".program-popup").removeClass("show");
+    $(".card.active").removeClass("active");
+    $(".program-popup").css("top", "0px");
+    $($(this).parent()).css("margin-bottom", "0");
+  });
+
+
+  $(".top-program ul li").click(function () {
+    let idList = "#" + $(this).attr("id");
+    let idListProgram = "#" + $(this).attr("id") + "-list";
+    let imageSource = $("img", idList).attr("src");
+
+    if($("li").hasClass("first-load")) {
+      $("li").removeClass("first-load")
+    } 
+    $(".program-arrow").css("background", `url("${imageSource}")`);
+    $(".program-arrow").insertAfter($("img", idList));
+
+    if ($("div").hasClass("program-list-active")) {
+      let idActive = "#" + $(".program-list-active").attr("id");
+      $(idActive).removeClass("program-list-active");
+    }
+    $(".program-arrow").css("visibility", "visible");
+    $(idListProgram).addClass("program-list-active");
+  })
+});

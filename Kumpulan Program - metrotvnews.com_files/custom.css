@@ -1,0 +1,97 @@
+.card-container .card {
+  margin-bottom: 0;
+  position: relative;
+}
+.card-container .card.active {
+  margin-bottom: 650px !important;
+}
+
+.card-container .card::before {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-top: solid 20px transparent;
+  border-bottom: solid 20px #094775;
+  border-right: solid 20px transparent;
+  border-left: solid 20px transparent;
+  transition: all ease-out 0.3s;
+  opacity: 0;
+}
+.card-container .card.active::before {
+  opacity: 1;
+}
+
+.program-popup {
+  height: auto;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transition: all ease-out 0.3s;
+  top: 0;
+  overflow: hidden;
+}
+
+.program-popup.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.program-popup .program-content.show {
+  display: block;
+}
+
+.program-popup .program-content {
+  transform: translateY(-50px);
+}
+
+.program-popup .program-title {
+  pointer-events: none;
+}
+
+.card-item figure {
+  border-radius: 8px;
+  margin: 0;
+}
+
+.ratio {
+  width: 100%;
+  height: 0;
+  position: relative;
+  overflow: hidden;
+}
+.ratio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ratio16 {
+  padding-top: 56.25%;
+}
+.ratio75 {
+  padding-top: 75%;
+}
+.ratio100 {
+  padding-top: 100%;
+}
+
+.program-popup .load-more {
+  margin: 10px auto;
+}
+
+.program-popup p {
+  font-size: 13px;
+}
+
+.program-popup .btn-close {
+  position: relative;
+  z-index: 4;
+}
